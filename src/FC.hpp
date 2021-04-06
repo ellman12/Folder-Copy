@@ -1,9 +1,15 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <vector>
 
 using std::cout;
+using std::cin;
 using std::endl;
 using std::fstream;
+using std::string;
+using std::vector;
 
 void help()
 {
