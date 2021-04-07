@@ -1,10 +1,20 @@
+import shutil
 import sys
+import time
 import os
 
 
-def copyDirs(dirs, location):
-    print("copy ")
+def copyDirs(dirs: str, location: str):
+    if (location == ""):
+        location = input("Please enter a location: ")
 
+    location += "/fc Backup " + time.strftime("%Y-%m-%d %H;%M;%S")
+
+    for dir in dirs:
+        try:
+            shutil.copytree(dir, location, dirs_exist_ok=True)
+        except:
+            print(f"An error occurred while copying {dir} to {location}")
 
 def listDirs(dirs):
     i = 0
@@ -14,20 +24,20 @@ def listDirs(dirs):
 
 
 with open(os.environ["APPDATA"] + "/fc/fc.conf", 'r') as conf:
-    # https://stackoverflow.com/a/3277515
-    config = [line.rstrip() for line in conf]
-    # config = { } TODO: dictionary for config shit
+    for i, line in enumerate(conf):
+        if "Default Copy Location:" in line:
+            cpLoc = line[23:]  # Where folders are copied
 
 with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'r') as dirstxt:
     dirs = [line.rstrip() for line in dirstxt]
     dirstxt.close()
 
 if (len(sys.argv) == 1):
-    copyDirs()
+    copyDirs(dirs, cpLoc)
     exit()
 
 elif (sys.argv[1] == "cp"):
-    copyDirs()
+    copyDirs(dirs, cpLoc)
     exit()
 
 elif (sys.argv[1] == "add"):
