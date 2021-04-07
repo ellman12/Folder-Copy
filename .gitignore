@@ -30,3 +30,4 @@
 *.exe
 *.out
 *.app
+src/__pycache__/header.cpython-39.pyc
