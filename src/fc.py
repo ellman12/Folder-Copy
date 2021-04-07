@@ -4,17 +4,19 @@ import time
 import os
 
 
-def copyDirs(dirs: str, location: str):
-    if (location == ""):
-        location = input("Please enter a location: ")
+def copyDirs(dirs: str, bakLoc: str):
+    if (bakLoc == ""):
+        bakLoc = input("Please enter a location: ")
 
-    location += "/fc Backup " + time.strftime("%Y-%m-%d %H;%M;%S")
+    bakLoc += "\\fc Backup " + time.strftime("%Y-%m-%d %H;%M;%S")
 
     for dir in dirs:
-        try:
-            shutil.copytree(dir, location, dirs_exist_ok=True)
-        except:
-            print(f"An error occurred while copying {dir} to {location}")
+        for subDir, _, files in os.walk(dir):
+            for file in files:
+                newLocation = bakLoc + '\\' + file
+                if not os.path.exists(bakLoc):
+                    os.makedirs(bakLoc)
+                shutil.copy(subDir + '/' + file, newLocation)
 
 def listDirs(dirs):
     i = 0
