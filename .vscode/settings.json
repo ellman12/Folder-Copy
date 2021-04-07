@@ -42,5 +42,6 @@
         "xstddef": "cpp",
         "xtr1common": "cpp",
         "xutility": "cpp"
-    }
+    },
+    "python.pythonPath": "C:\\Users\\Elliott\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 }

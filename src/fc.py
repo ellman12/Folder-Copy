@@ -2,21 +2,18 @@ import shutil
 import sys
 import time
 import os
+import pathlib
 
 
-def copyDirs(dirs: str, bakLoc: str):
+def copyDirs(dirs: list[pathlib.PurePath], bakLoc: str):
     if (bakLoc == ""):
         bakLoc = input("Please enter a location: ")
 
-    bakLoc += "\\fc Backup " + time.strftime("%Y-%m-%d %H;%M;%S")
+    bakLoc = bakLoc / ("fc Backup " + time.strftime("%Y-%m-%d %H;%M;%S"))
 
     for dir in dirs:
-        for subDir, _, files in os.walk(dir):
-            for file in files:
-                newLocation = bakLoc + '\\' + file
-                if not os.path.exists(bakLoc):
-                    os.makedirs(bakLoc)
-                shutil.copy(subDir + '/' + file, newLocation)
+        shutil.copytree(dir, bakLoc / dir.name)
+
 
 def listDirs(dirs):
     i = 0
@@ -28,10 +25,10 @@ def listDirs(dirs):
 with open(os.environ["APPDATA"] + "/fc/fc.conf", 'r') as conf:
     for i, line in enumerate(conf):
         if "Default Copy Location:" in line:
-            cpLoc = line[23:]  # Where folders are copied
+            cpLoc = pathlib.PurePath(line[23:])  # Where folders are copied
 
 with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'r') as dirstxt:
-    dirs = [line.rstrip() for line in dirstxt]
+    dirs = [pathlib.PurePath(line.rstrip()) for line in dirstxt]
     dirstxt.close()
 
 if (len(sys.argv) == 1):
