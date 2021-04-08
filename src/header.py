@@ -23,13 +23,14 @@ def copyDirs(dirs: list[pathlib.PurePath], bakLoc: str):
 
     bakLoc = bakLoc / ("fc Backup " + time.strftime("%Y-%m-%d %H;%M;%S"))
 
-    print(f"{colors.OKGREEN}Copying folders/files to {bakLoc}\n")
+    print(f"{colors.OKCYAN}Copying folders/files to {bakLoc}\n")
     for dir in dirs:
         try:
             shutil.copytree(dir, bakLoc / dir.name)
-            print(f"{colors.OKGREEN}{dir}copied {colors.ENDC}")
+            print(f"{colors.OKGREEN}{dir}\t✓ copied{colors.ENDC}")
         except:
-            print(f"{colors.FAIL}An error occurred while trying to copy {dir} to {bakLoc / dir.name}{colors.ENDC}")
+            print(f"{colors.FAIL}An error occurred while trying to copy {dir} to {bakLoc / dir.name}      ✗ not copied{colors.ENDC}")
+            exit()
 
 
 def listDirs(dirs):

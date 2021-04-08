@@ -20,13 +20,13 @@ elif (sys.argv[1] == "cp"):
 elif (sys.argv[1] == "add"):
     try:
         for dir in dirs:  # Check for duplicates
-            if sys.argv[2] == str(dir):
-                print(f"dir '{sys.argv[2]}' is already in the file!")
+            if str(sys.argv[2]) == str(dir):
+                print(f"{colors.FAIL}dir '{str(sys.argv[2])}' is already in the file!{colors.ENDC}")
                 listDirs(dirs)
                 exit()
 
         dirs.append(sys.argv[2])
-        with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'a') as dirstxt:
+        with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'w') as dirstxt:
             for dir in dirs:
                 dirstxt.write(str(dir) + '\n')
     except IndexError:
@@ -34,6 +34,16 @@ elif (sys.argv[1] == "add"):
         exit()
 
 elif (sys.argv[1] == "ls"):
+    listDirs(dirs)
+    exit()
+
+elif (sys.argv[1] == "rm"):
+    with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'r') as f:
+        lines = f.readlines()
+    with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'w') as f:
+        for line in lines:
+            if line.strip("\n") != sys.argv[2]:
+                f.write(line)
     listDirs(dirs)
     exit()
 
