@@ -20,14 +20,15 @@ elif (sys.argv[1] == "cp"):
 elif (sys.argv[1] == "add"):
     try:
         for dir in dirs:  # Check for duplicates
-            if sys.argv[2] == dir:
-                print(f"{sys.argv[2]} is already in the file!")
+            if sys.argv[2] == str(dir):
+                print(f"dir '{sys.argv[2]}' is already in the file!")
+                listDirs(dirs)
                 exit()
 
         dirs.append(sys.argv[2])
         with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'a') as dirstxt:
             for dir in dirs:
-                dirstxt.write(dir + '\n')
+                dirstxt.write(str(dir) + '\n')
     except IndexError:
         print("'add' requires a directory")
         exit()
