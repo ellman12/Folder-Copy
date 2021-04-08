@@ -17,6 +17,11 @@ class colors:  # https://stackoverflow.com/questions/287871/how-to-print-colored
     UNDERLINE = '\033[4m'
 
 
+def help():
+    print(f"{colors.OKCYAN}-----------------\nFolder Copy (FC)\n-----------------\nCommand Line Args\n-----------------\nNo args\t\tCopy folders\nhelp\t\tShows this\nadd <dir>\tAdd <dir> to dirs.txt\nrm <dir>\tRemove <dir>\nls\t\tList dirs\nclr\t\tClear the dirs.txt file")
+    print(f"cp <dir>\tIf no <dir> arg given, copy to default dir. If arg given, copy there instead{colors.ENDC}")
+
+
 def copyDirs(dirs: list[pathlib.PurePath], bakLoc: str):
     if (bakLoc == ""):
         bakLoc = input("Please enter a location: ")

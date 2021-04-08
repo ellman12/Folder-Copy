@@ -54,5 +54,11 @@ elif (sys.argv[1] == "clr"):
     with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'w') as dirstxt:
         dirstxt.write("")
 
+elif (sys.argv[1] == "help"):
+    help()
+    exit()
+
 else:
-    print(f"Unknown command: '{sys.argv[1]}'")
+    print(f"{colors.FAIL}Unknown command: '{sys.argv[1]}'")
+    help()
+    exit()
