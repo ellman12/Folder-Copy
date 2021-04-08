@@ -14,7 +14,10 @@ if (len(sys.argv) == 1):
     exit()
 
 elif (sys.argv[1] == "cp"):
-    copyDirs(dirs, cpLoc)
+    try:
+        copyDirs(dirs, pathlib.PurePath(sys.argv[2]))
+    except IndexError:
+        copyDirs(dirs, cpLoc)
     exit()
 
 elif (sys.argv[1] == "add"):
