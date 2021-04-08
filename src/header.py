@@ -4,6 +4,7 @@ import time
 import os
 import pathlib
 
+
 class colors:  # https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -22,7 +23,7 @@ def copyDirs(dirs: list[pathlib.PurePath], bakLoc: str):
 
     bakLoc = bakLoc / ("fc Backup " + time.strftime("%Y-%m-%d %H;%M;%S"))
 
-    print(f"{colors.OKGREEN}Copying folders/files to {bakLoc}")
+    print(f"{colors.OKGREEN}Copying folders/files to {bakLoc}\n")
     for dir in dirs:
         try:
             shutil.copytree(dir, bakLoc / dir.name)
@@ -33,6 +34,8 @@ def copyDirs(dirs: list[pathlib.PurePath], bakLoc: str):
 
 def listDirs(dirs):
     i = 0
+    print("\n")
     for dir in dirs:
         i += 1
-        print(f"Dir #{i}:\t{dir}")
+        print(f"{colors.OKCYAN}{i}: {dir}{colors.ENDC}")
+    print("\n")
