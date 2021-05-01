@@ -3,7 +3,7 @@ from header import *
 with open(os.environ["APPDATA"] + "/fc/fc.conf", 'r') as conf:
     for i, line in enumerate(conf):
         if "Default Copy Location:" in line:
-            cpLoc = pathlib.PurePath(line[23:])  # Where folders are copied
+            cpLoc = pathlib.PurePath(line[23:])  # Where folders are copied.
 
 with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'r') as dirstxt:
     dirs = [pathlib.PurePath(line.rstrip()) for line in dirstxt]
@@ -11,6 +11,7 @@ with open(os.environ["APPDATA"] + "/fc/dirs.txt", 'r') as dirstxt:
 
 if (len(sys.argv) == 1):
     copyDirs(dirs, cpLoc)
+    input("Hit Enter to exit")
     exit()
 
 elif (sys.argv[1] == "cp"):
@@ -18,6 +19,7 @@ elif (sys.argv[1] == "cp"):
         copyDirs(dirs, pathlib.PurePath(sys.argv[2]))
     except IndexError:
         copyDirs(dirs, cpLoc)
+    input("Hit Enter to exit")
     exit()
 
 elif (sys.argv[1] == "add"):
