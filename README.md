@@ -1,7 +1,7 @@
 # Folder Copy
  Command line tool (mostly) to automatically copy folders to a destination for easy backing up to an online service or elsewhere.
  
- **THIS SOFTWARE IS GARBAGE AND I NO LONGER RECOMMEND USING IT! IF YOU WANT A BETTER TOOL FOR BACKING UP, CHECK OUT [GBP](https://github.com/ellman12/Graphical-Backup-Program)**
+### **THIS SOFTWARE IS GARBAGE AND I NO LONGER RECOMMEND USING IT. I HAVE NO PLANS OF MODIFYING OR IMPROVING IT! IF YOU WANT A BETTER TOOL FOR BACKING UP FOLDERS _AND_ FILES, CHECK OUT [GBP](https://github.com/ellman12/Graphical-Backup-Program).**
 
 Something I often do is copying several "super important" folders to an external location like the cloud (in addition to a full PC backup). Things like video game save files, code, etc. I like to have extra backups of super important stuff like this. So instead of having to go hunting for all of those folders every time I want to back them up, I made this little script to automate the process. In my Run.ahk [AutoHotkey](https://github.com/ellman12/AutoHotkey) script, I have a command (just `fc`) that will clear the fc folder automatically if I want before running the actual fc Python script. I couldn't figure out how to do this with Python and plus I thought it would just be better to do that there. This is nice because I won't have tons of wasted space from old backups I no longer need.
 
